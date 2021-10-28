@@ -474,23 +474,9 @@ recall_list     = []
 precission_list = []
 clf_list        = []
 
-"""## Classificador KNN"""
+"""## Classificador Decision TRee"""
 
-K_neighbors = range(1,20)
-scores_list = []
-
-for k in K_neighbors:
-
-  knn =  KNeighborsClassifier(n_neighbors=k)
-  knn.fit(X_train, y_train)
-  y_pred = knn.predict(X_test)
-  scores_list.append(accuracy_score(y_test, y_pred))
-
-plt.plot(K_neighbors, scores_list)
-plt.xlabel("Valor de K")
-plt.ylabel("Acurácia")
-
-clf = KNeighborsClassifier(n_neighbors=1)
+clf = DecisionTreeClassifier(criterion="entropy")
 clf.fit(X_train,y_train)
 y_pred = clf.predict(X_test)
 
@@ -502,7 +488,7 @@ f1score_list.append(accuracy)
 accuracy_list.append(precision)
 recall_list.append(recall)
 precission_list.append(f1score)
-clf_list.append('KNeighborsClassifier')
+clf_list.append('DecisionTreeClassifier')
 print(f"Acccuracy: {accuracy}%")
 print(f"Precision: {precision}%")
 print(f"Recall: {recall}%")
